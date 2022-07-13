@@ -1,12 +1,15 @@
 using LowTeeGames;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public GameObject target;
     public GameObject decoy;
+    public GameObject solarFlare;
     public Vector2 spawnDelay;
     public int rounds;
     public float timePerRound;
@@ -31,6 +34,8 @@ public class GameManager : MonoSingleton<GameManager>
         updatables.Add(inputManager);
         updatables.Add(spawnManager);
         updatables.Add(roundManager);
+
+        OnClickedEvent.RegisterListener(SpawnSolarFlare);
     }
 
     private void Update()
@@ -55,5 +60,17 @@ public class GameManager : MonoSingleton<GameManager>
     private void UpdateBehaviors()
     {
         updatables.ForEach(t => t.Update());
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void SpawnSolarFlare(OnClickedEvent info)
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 spawnPos = new Vector3(mousePos.x, mousePos.y, 0);
+        Pool.Instance.GetItemFromPool(solarFlare, spawnPos, Quaternion.identity);
     }
 }

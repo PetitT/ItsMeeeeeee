@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     {
         if (status.text == "")
         {
-            status.text = "Good Job, Twitch obliterated your team !";
+            status.text = "Twitch obliterated your team !";
         }
     }
 
@@ -69,6 +69,8 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
+
+
     }
 
     private void OnRoundBegin(OnRoundBeginEvent info)
