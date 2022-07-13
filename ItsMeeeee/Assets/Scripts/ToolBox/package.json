@@ -1,0 +1,11 @@
+{
+  "name": "com.lowteegames.toolbox",
+  "displayName": "Tool Box",
+  "version": "1.0.0",
+  "unity": "2020.3",
+  "description": "General tools",
+	"author": {
+	  "name": "LowTee",
+	  "email": "xcthib@hotmail.com"
+	}
+}
